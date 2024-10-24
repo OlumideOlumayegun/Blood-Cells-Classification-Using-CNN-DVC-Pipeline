@@ -3,7 +3,7 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_URL: https://1drv.ms/u/s!Ajpr2uJylZXdht1Nd2UbG-FHeBKNsw?e=D5Ufkf
+  source_URL: https://project-dataset79.s3.us-east-1.amazonaws.com/blood_cells.zip
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
 
