@@ -1,0 +1,118 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/bloodcellClassifier/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 48050c1b3b3cebde1e29621501971812
+      size: 805
+    - path: src/bloodcellClassifier/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 0c9c1b5424c5295f0dbae942e4c83af8
+      size: 930
+    outs:
+    - path: artifacts/data_ingestion/blood_cells
+      hash: md5
+      md5: 6cb7828091adb06922b5ce21b0dab0dc.dir
+      size: 83193044
+      nfiles: 9957
+  prepare_base_model:
+    cmd: python src/bloodcellClassifier/pipeline/stage_02_prepare_base_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 48050c1b3b3cebde1e29621501971812
+      size: 805
+    - path: src/bloodcellClassifier/pipeline/stage_02_prepare_base_model.py
+      hash: md5
+      md5: f68bd5ab36db681f2486c6c85ae23e1d
+      size: 1019
+    params:
+      params.yaml:
+        CLASSES: 4
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 0.01
+        WEIGHTS: imagenet
+    outs:
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 2c8d5217514e67c6c515e2f5bbfc7f7d.dir
+      size: 118274168
+      nfiles: 2
+  training:
+    cmd: python src/bloodcellClassifier/pipeline/stage_03_training.py
+    deps:
+    - path: artifacts/data_ingestion/blood_cells
+      hash: md5
+      md5: 6cb7828091adb06922b5ce21b0dab0dc.dir
+      size: 83193044
+      nfiles: 9957
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 2c8d5217514e67c6c515e2f5bbfc7f7d.dir
+      size: 118274168
+      nfiles: 2
+    - path: config/config.yaml
+      hash: md5
+      md5: 48050c1b3b3cebde1e29621501971812
+      size: 805
+    - path: src/bloodcellClassifier/components/prepare_callbacks.py
+      hash: md5
+      md5: 438ccb79ea3352174c2b6ccb8cc9aaef
+      size: 1012
+    - path: src/bloodcellClassifier/pipeline/stage_03_training.py
+      hash: md5
+      md5: 2929598ef8e9145efb6c330e439252fb
+      size: 1290
+    params:
+      params.yaml:
+        AUGMENTATION: true
+        BATCH_SIZE: 16
+        EPOCHS: 1
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        LEARNING_RATE: 0.01
+    outs:
+    - path: artifacts/training/model.h5
+      hash: md5
+      md5: 4708a87c4e52de09dbe6010d0f37ed88
+      size: 59348120
+  evaluation:
+    cmd: python src/bloodcellClassifier/pipeline/stage_04_evaluation.py
+    deps:
+    - path: artifacts/data_ingestion/blood_cells
+      hash: md5
+      md5: 6cb7828091adb06922b5ce21b0dab0dc.dir
+      size: 83193044
+      nfiles: 9957
+    - path: artifacts/training/model.h5
+      hash: md5
+      md5: 4708a87c4e52de09dbe6010d0f37ed88
+      size: 59348120
+    - path: config/config.yaml
+      hash: md5
+      md5: 48050c1b3b3cebde1e29621501971812
+      size: 805
+    - path: src/bloodcellClassifier/pipeline/stage_04_evaluation.py
+      hash: md5
+      md5: 9dc9e90ddbc3257622dfb52c2bc1a8b7
+      size: 887
+    params:
+      params.yaml:
+        BATCH_SIZE: 16
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: d022b47f696dc9be5ca6100902eb98e6
+      size: 72
