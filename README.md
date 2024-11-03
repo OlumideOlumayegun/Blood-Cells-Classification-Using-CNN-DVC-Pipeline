@@ -5,11 +5,15 @@ This repository contains an end-to-end deep learning web application that classi
 ---
 
 ## Table of Contents
-- [Overview](#overview)
+- [Project Overview](#project-overview)
 - [Dataset](#dataset)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Setup and Installation](#setup-and-installation)
+- [Directory Structure](#directory-structure)
 - [Model Architecture](#model-architecture)
 - [Pipeline Stages](#pipeline-stages)
-- [Deployment](#deployment)
+- [ASW Deployment](#deployment)
 - [Usage](#usage)
 - [Development Setup](#development-setup)
 - [Future Work](#future-work)
