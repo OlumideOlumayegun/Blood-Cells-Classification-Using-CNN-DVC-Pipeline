@@ -1,5 +1,6 @@
 # Blood Cell Classification Web Application
 ![Bood Cell Types](BloodCellImage.jpg)
+
 This repository contains an end-to-end deep learning web application that classifies blood cell images as either Eosinophil, Lymphocyte, Monocyte, or Neutrophil. The application is built with Python and Flask, using a pre-trained convolution neural network (CNN) based on VGG16 model fine-tuned on a dataset of blood cell images. It is designed for easy deployment on AWS infrastructure with continuous integration and deployment (CI/CD) using GitHub Actions.
 
 ---
