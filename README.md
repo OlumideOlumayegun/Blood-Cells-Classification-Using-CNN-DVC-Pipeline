@@ -61,6 +61,7 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 3. **Model Training**: Trains the modified VGG16 model with the blood cell images.
 4. **Model Evaluation**: Evaluates the model on the validation set to assess accuracy.
 
+```
 .
 ├── .github/                  # Flask application code
 │   └── workflows/
@@ -79,6 +80,7 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 ├── requirements.txt      # Python dependencies
 ├── dvc.yaml              # DVC pipeline stages
 └── README.md             # Project documentation
+```
 
 ## Deployment
 
