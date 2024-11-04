@@ -1,7 +1,7 @@
 # Blood Cell Classification Web Application
 ![Bood Cell Types](BloodCellImage.jpg)
 
-This repository contains an end-to-end deep learning web application that classifies blood cell images as either Eosinophil, Lymphocyte, Monocyte, or Neutrophil. The application is built with Python and Flask, using a pre-trained convolution neural network (CNN) based on VGG16 model fine-tuned on a dataset of blood cell images. It is designed for easy deployment on AWS infrastructure with continuous integration and deployment (CI/CD) using GitHub Actions.
+This repository contains an end-to-end deep learning web application that classifies blood cell images as either Eosinophil, Lymphocyte, Monocyte, or Neutrophil. The application is built with Python and Flask, using a pre-trained VGG16 model fine-tuned on a dataset of blood cell images. It is designed for easy deployment on AWS infrastructure with continuous integration and deployment (CI/CD) using GitHub Actions.
 
 ---
 
@@ -10,10 +10,10 @@ This repository contains an end-to-end deep learning web application that classi
 - [Dataset](#dataset)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Setup and Installation](#setup-and-installation)
-- [Directory Structure](#directory-structure)
-- [Model Architecture](#model-architecture)
 - [Pipeline Stages](#pipeline-stages)
+- [Directory Structure](#directory-structure)
+- [Setup and Installation](#setup-and-installation)
+
 - [ASW Deployment](#deployment)
 - [Usage](#usage)
 - [Development Setup](#development-setup)
@@ -23,25 +23,35 @@ This repository contains an end-to-end deep learning web application that classi
 
 ## Overview
 
-This project aims to classify blood cell images to support medical diagnosis. The web application allows users to upload an image of a blood cell, which is then classified as one of four types:
+Diagnosing blood-related diseases often requires identifying and analyzing patient blood samples. Automated techniques for detecting and classifying blood cell subtypes play a crucial role in advancing medical diagnostics. This project aims to classify blood cell images to support medical diagnosis. The web application allows users to upload an image of a blood cell, which is then classified as one of four types:
 - Eosinophil
 - Lymphocyte
 - Monocyte
 - Neutrophil
 
-The model was trained on blood cell image data stored in an **AWS S3 bucket** and developed using **Python**, **Keras**, and **TensorFlow**.
+This application classifies blood cell images using a Convolutional Neural Network (CNN) model fine-tuned from the VGG16 model pre-trained on the ImageNet dataset. The model was modified to include a flatten layer and a softmax dense layer with 4 output units for multi-class classification. Blood cell images are served to the model through a web app built with Flask, and the application is fully containerized using Docker and hosted on an AWS EC2 instance.
 
 ## Dataset
 
-The dataset for model training and evaluation was sourced from an AWS S3 bucket. It contains labeled images of blood cells categorized into the four classes. 
+The dataset used for training and evaluating the model was sourced from [Kaggle](https://www.kaggle.com/datasets/paultimothymooney/blood-cells/data). This dataset contains augmented images of blood cells (JPEG) for each of 4 different cell types grouped into 4 different folders (according to cell type). The compressed dataset was stored in AWS S3 and downloaded from there for model training and evaluation. 
 
-## Model Architecture
+## Features
 
-The model is based on **VGG16** pretrained on the **ImageNet** dataset. The final fully connected layers of VGG16 were replaced with:
-- A **Flatten layer**
-- A **Dense SoftMax layer** with 4 units, corresponding to the 4 blood cell classes.
+- **Transfer Learning**: Leveraging VGG16 pretrained on ImageNet for efficient classification.
+- **Automated Pipeline**: Data ingestion, model training, and evaluation managed with DVC.
+- **Web Application**: Flask-based interface for uploading and classifying blood cell images.
+- **CI/CD Deployment**: Docker, GitHub Actions, and AWS integration for continuous deployment.
+- **AWS Hosted**: Application hosted on an EC2 instance with Docker image pulled from ECR.
 
-This modified model architecture leverages transfer learning for improved accuracy with a relatively small dataset. The network was fine-tuned using the ingested blood cell images, and evaluation was performed on a validation dataset to measure model accuracy.
+## Technologies Used
+
+- **Python**: Data processing, modeling, and backend application.
+- **TensorFlow / Keras**: CNN model architecture, transfer learning, and training.
+- **Flask**: Web application framework for serving the model.
+- **DVC**: Pipeline management for reproducible machine learning.
+- **Docker**: Containerization for consistent deployment across environments.
+- **GitHub Actions**: CI/CD pipeline for automatic deployment on AWS.
+- **AWS (ECR, EC2, IAM)**: Cloud infrastructure for hosting and managing the application.
 
 ## Pipeline Stages
 
@@ -50,6 +60,25 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 2. **Base Model Development**: Defines the base CNN model architecture (VGG16 with transfer learning).
 3. **Model Training**: Trains the modified VGG16 model with the blood cell images.
 4. **Model Evaluation**: Evaluates the model on the validation set to assess accuracy.
+
+.
+├── .github/                  # Flask application code
+│   └── workflows/
+│       └── main.py
+├── artifacts/
+│   ├── data_ingestion/
+│   ├── prepare_base_model/
+│   ├── prepare_callbacks/
+│   └── training/
+├── static/           # Static files (CSS, JS)
+│   ├── templates/        # HTML templates
+│   └── app.py            # Main Flask application
+├── model/                # Model training and evaluation code
+├── data/                 # Data ingestion and processing scripts
+├── Dockerfile            # Docker configuration file
+├── requirements.txt      # Python dependencies
+├── dvc.yaml              # DVC pipeline stages
+└── README.md             # Project documentation
 
 ## Deployment
 
