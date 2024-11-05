@@ -113,8 +113,8 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 ### Local Setup
 1. Clone the repository:
 ```
-git clone https://github.com/yourusername/blood-cell-classification.git
-cd blood-cell-classification
+git clone [https://github.com/yourusername/blood-cell-classification.git](https://github.com/OlumideOlumayegun/Blood-Cells-Classification-Using-CNN-DVC-Pipeline.git)
+cd Blood-Cells-Classification-Using-CNN-DVC-Pipeline
 ```
 2. Install dependencies:
 ```
