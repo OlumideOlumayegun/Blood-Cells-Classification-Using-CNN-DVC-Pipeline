@@ -105,15 +105,17 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 4. **Model Evaluation**: Evaluates the model on the validation set to assess accuracy.
 
 ## Setup and Installation
+
 ### Prerequisites
 - Python 3.10+
 - Docker
 - AWS Account with IAM permissions for EC2 and ECR access
 - GitHub Account
+
 ### Local Setup
 1. Clone the repository:
 ```
-git clone [https://github.com/yourusername/blood-cell-classification.git](https://github.com/OlumideOlumayegun/Blood-Cells-Classification-Using-CNN-DVC-Pipeline.git)
+git clone https://github.com/OlumideOlumayegun/Blood-Cells-Classification-Using-CNN-DVC-Pipeline.git
 cd Blood-Cells-Classification-Using-CNN-DVC-Pipeline
 ```
 2. Install dependencies:
@@ -124,9 +126,18 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
-Visit code http://localhost:5000 code in your browser to access the application.
+Visit http://localhost:8080 in your browser to access the application.
 
-
+### Docker Setup
+1. **Build the Docker image**
+```
+docker build -t blood-cell-classification .
+```
+2. Run the Docker container
+```
+docker run -p 5000:5000 blood-cell-classification
+```
+Visit http://localhost:8080 in your browser to access the application.
 
 ## Deployment
 
