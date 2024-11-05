@@ -8,12 +8,11 @@ This repository contains an end-to-end deep learning web application that classi
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Dataset](#dataset)
+- [Directory Structure](#directory-structure)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Pipeline Stages](#pipeline-stages)
-- [Directory Structure](#directory-structure)
 - [Setup and Installation](#setup-and-installation)
-
 - [ASW Deployment](#deployment)
 - [Usage](#usage)
 - [Development Setup](#development-setup)
@@ -104,6 +103,30 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 2. **Base Model Development**: Defines the base CNN model architecture (VGG16 with transfer learning).
 3. **Model Training**: Trains the modified VGG16 model with the blood cell images.
 4. **Model Evaluation**: Evaluates the model on the validation set to assess accuracy.
+
+## Setup and Installation
+### Prerequisites
+- Python 3.10+
+- Docker
+- AWS Account with IAM permissions for EC2 and ECR access
+- GitHub Account
+### Local Setup
+1. Clone the repository:
+```
+git clone https://github.com/yourusername/blood-cell-classification.git
+cd blood-cell-classification
+```
+2. Install dependencies:
+```
+pip install -r requirements.txt
+```
+3. Run the application locally
+```
+python app.py
+```
+Visit code http://localhost:5000 code in your browser to access the application.
+
+
 
 ## Deployment
 
