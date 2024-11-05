@@ -13,9 +13,8 @@ This repository contains an end-to-end deep learning web application that classi
 - [Technologies Used](#technologies-used)
 - [Pipeline Stages](#pipeline-stages)
 - [Setup and Installation](#setup-and-installation)
-- [ASW Deployment](#deployment)
+- [AWS Deployment](#deployment)
 - [Usage](#usage)
-- [Development Setup](#development-setup)
 - [Future Work](#future-work)
 
 ---
@@ -113,35 +112,34 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 - GitHub Account
 
 ### Local Setup
-1. Clone the repository:
+1. **Clone the repository**:
 ```
 git clone https://github.com/OlumideOlumayegun/Blood-Cells-Classification-Using-CNN-DVC-Pipeline.git
 cd Blood-Cells-Classification-Using-CNN-DVC-Pipeline
 ```
-2. Install dependencies:
+2. **Install dependencies**:
 ```
 pip install -r requirements.txt
 ```
-3. Run the application locally
+3. **Run the application locally**:
 ```
 python app.py
 ```
 Visit http://localhost:8080 in your browser to access the application.
 
 ### Docker Setup
-1. **Build the Docker image**
+1. **Build the Docker image**:
 ```
 docker build -t blood-cell-classification .
 ```
-2. Run the Docker container
+2. **Run the Docker container**:
 ```
-docker run -p 5000:5000 blood-cell-classification
+docker run -p 8080:8080 blood-cell-classification
 ```
-Visit http://localhost:8080 in your browser to access the application.
 
-## Deployment
+## AWS Deployment
 
-### Infrastructure
+### Infrastructure Setup
 
 The application is hosted on AWS infrastructure, with the following setup:
 1. **IAM User**: Configured with specific EC2 and ECR access policies.
@@ -163,18 +161,5 @@ The **GitHub Actions** workflow automates the CI/CD process as follows:
 1. **Upload Image**: Access the web application hosted on the EC2 instance and upload an image of a blood cell.
 2. **View Prediction**: The application will classify the cell as an eosinophil, lymphocyte, monocyte, or neutrophil and display the result.
 
-## Development Setup
 
-To set up the project for development or testing, follow these steps:
-
-### Prerequisites
-- **Docker**: Ensure Docker is installed on your local machine.
-- **AWS CLI**: Set up AWS CLI with access credentials for EC2 and ECR.
-- **Python**: Install Python 3.8 or later with dependencies listed in `requirements.txt`.
-
-### Steps
-1. **Clone Repository**:
-   ```bash
-   git clone https://github.com/username/repo-name.git
-   cd repo-name
 
