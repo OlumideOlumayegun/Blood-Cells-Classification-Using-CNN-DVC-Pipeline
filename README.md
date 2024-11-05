@@ -117,6 +117,11 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 git clone https://github.com/OlumideOlumayegun/Blood-Cells-Classification-Using-CNN-DVC-Pipeline.git
 cd Blood-Cells-Classification-Using-CNN-DVC-Pipeline
 ```
+2. **Create a conda virtual environment**
+```
+conda create -n venv python=3.10 -y
+conda activate venv
+```
 2. **Install dependencies**:
 ```
 pip install -r requirements.txt
@@ -142,24 +147,34 @@ docker run -p 8080:8080 blood-cell-classification
 ### Infrastructure Setup
 
 The application is hosted on AWS infrastructure, with the following setup:
-1. **IAM User**: Configured with specific EC2 and ECR access policies.
-2. **ECR Repository**: Stores the Docker image of the application.
-3. **EC2 Instance**: Serves as the self-hosted runner for the GitHub Actions CI/CD pipeline and runs the application in a Docker container.
+1. **IAM User**: Create an IAM user with specific policies for EC2 (AmazonEC2FullAccess) and ECR (AmazonEC2ContainerRegistryFullAccess).
+2. **ECR Repository**: Create an ECR repository to store the Docker image..
+3. **EC2 Instance**: Launch an EC2 instance with Docker installed and configure it as a self-hosted GitHub Actions runner.
 
-### CI/CD Workflow
-
-The **GitHub Actions** workflow automates the CI/CD process as follows:
-1. **Build Docker Image**: Creates a Docker image of the source code.
-2. **Push Image to ECR**: Uploads the Docker image to AWS ECR.
-3. **Launch EC2 Instance**: If not already running, launches an EC2 instance.
-4. **Deploy to EC2**: Pulls the image from ECR to the EC2 instance and runs the application container.
+### CI/CD with Github Actions
 
 **GitHub Secrets** are used to securely store AWS credentials, and changes pushed to the main branch automatically trigger the deployment pipeline.
+Add the following GitHub secrets for AWS credentials:
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- AWS_REGION
+- ECR_REPOSITORY_NAME
+- AWS_ECR_LOGIN_URI
+
+A **GitHub Actions** workflow is configured to automate the CI/CD pipeline. On pushing changes to the repository, GitHub Actions triggers the workflow to:
+- Build the Docker image.
+- Push the Docker image to AWS ECR.
+- Launch or update the EC2 instance.
+- Pull the latest Docker image from ECR and run it on EC2. 
+
 
 ## Usage
+Once the application is deployed, users can upload blood cell images through the web interface. The application classifies each uploaded image as one of the four blood cell types: Eosinophil, Lymphocyte, Monocyte, or Neutrophil, and displays the result.
 
-1. **Upload Image**: Access the web application hosted on the EC2 instance and upload an image of a blood cell.
-2. **View Prediction**: The application will classify the cell as an eosinophil, lymphocyte, monocyte, or neutrophil and display the result.
+## Contributing
+Contributions are welcome! Please fork the repository, make your changes, and submit a pull request.
 
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 
