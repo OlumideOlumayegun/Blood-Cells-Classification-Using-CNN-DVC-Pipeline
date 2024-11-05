@@ -35,32 +35,6 @@ This application classifies blood cell images using a Convolutional Neural Netwo
 
 The dataset used for training and evaluating the model was sourced from [Kaggle](https://www.kaggle.com/datasets/paultimothymooney/blood-cells/data). This dataset contains augmented images of blood cells (JPEG) for each of 4 different cell types grouped into 4 different folders (according to cell type). The compressed dataset was stored in AWS S3 and downloaded from there for model training and evaluation. 
 
-## Features
-
-- **Transfer Learning**: Leveraging VGG16 pretrained on ImageNet for efficient classification.
-- **Automated Pipeline**: Data ingestion, model training, and evaluation managed with DVC.
-- **Web Application**: Flask-based interface for uploading and classifying blood cell images.
-- **CI/CD Deployment**: Docker, GitHub Actions, and AWS integration for continuous deployment.
-- **AWS Hosted**: Application hosted on an EC2 instance with Docker image pulled from ECR.
-
-## Technologies Used
-
-- **Python**: Data processing, modeling, and backend application.
-- **TensorFlow / Keras**: CNN model architecture, transfer learning, and training.
-- **Flask**: Web application framework for serving the model.
-- **DVC**: Pipeline management for reproducible machine learning.
-- **Docker**: Containerization for consistent deployment across environments.
-- **GitHub Actions**: CI/CD pipeline for automatic deployment on AWS.
-- **AWS (ECR, EC2, IAM)**: Cloud infrastructure for hosting and managing the application.
-
-## Pipeline Stages
-
-The project follows a well-defined pipeline using **DVC** to organize data and model pipelines. Pipeline stages include:
-1. **Data Ingestion**: Downloads the dataset from S3 to a local storage.
-2. **Base Model Development**: Defines the base CNN model architecture (VGG16 with transfer learning).
-3. **Model Training**: Trains the modified VGG16 model with the blood cell images.
-4. **Model Evaluation**: Evaluates the model on the validation set to assess accuracy.
-
 ## Directory Structure
 
 ```
@@ -104,6 +78,32 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 ├── setup.py             
 └── template.py             
 ```
+
+## Features
+
+- **Transfer Learning**: Leveraging VGG16 pretrained on ImageNet for efficient classification.
+- **Automated Pipeline**: Data ingestion, model training, and evaluation managed with DVC.
+- **Web Application**: Flask-based interface for uploading and classifying blood cell images.
+- **CI/CD Deployment**: Docker, GitHub Actions, and AWS integration for continuous deployment.
+- **AWS Hosted**: Application hosted on an EC2 instance with Docker image pulled from ECR.
+
+## Technologies Used
+
+- **Python**: Data processing, modeling, and backend application.
+- **TensorFlow / Keras**: CNN model architecture, transfer learning, and training.
+- **Flask**: Web application framework for serving the model.
+- **DVC**: Pipeline management for reproducible machine learning.
+- **Docker**: Containerization for consistent deployment across environments.
+- **GitHub Actions**: CI/CD pipeline for automatic deployment on AWS.
+- **AWS (ECR, EC2, IAM)**: Cloud infrastructure for hosting and managing the application.
+
+## Pipeline Stages
+
+The project follows a well-defined pipeline using **DVC** to organize data and model pipelines. Pipeline stages include:
+1. **Data Ingestion**: Downloads the dataset from S3 to a local storage.
+2. **Base Model Development**: Defines the base CNN model architecture (VGG16 with transfer learning).
+3. **Model Training**: Trains the modified VGG16 model with the blood cell images.
+4. **Model Evaluation**: Evaluates the model on the validation set to assess accuracy.
 
 ## Deployment
 
