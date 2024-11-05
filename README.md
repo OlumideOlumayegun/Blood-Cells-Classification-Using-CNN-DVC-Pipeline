@@ -16,6 +16,8 @@ This repository contains an end-to-end deep learning web application that classi
 - [AWS Deployment](#deployment)
 - [Usage](#usage)
 - [Future Work](#future-work)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
@@ -141,7 +143,6 @@ docker build -t blood-cell-classification .
 ```
 docker run -p 8080:8080 blood-cell-classification
 ```
-
 ## AWS Deployment
 
 ### Infrastructure Setup
@@ -167,9 +168,14 @@ A **GitHub Actions** workflow is configured to automate the CI/CD pipeline. On p
 - Launch or update the EC2 instance.
 - Pull the latest Docker image from ECR and run it on EC2. 
 
-
 ## Usage
 Once the application is deployed, users can upload blood cell images through the web interface. The application classifies each uploaded image as one of the four blood cell types: Eosinophil, Lymphocyte, Monocyte, or Neutrophil, and displays the result.
+
+## Future Work
+- Enhance the classification model by testing other CNN architectures.
+- Optimize model deployment with multi-instance load balancing.
+- Improve UI/UX of the web application.
+- Implement additional security measures for production-level deployment.
 
 ## Contributing
 Contributions are welcome! Please fork the repository, make your changes, and submit a pull request.
