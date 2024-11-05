@@ -65,7 +65,7 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 
 ```
 .
-├── .github/                  # Flask application code
+├── .github/                  
 │   └── workflows/
 │       └── main.py
 ├── artifacts/
@@ -73,15 +73,36 @@ The project follows a well-defined pipeline using **DVC** to organize data and m
 │   ├── prepare_base_model/
 │   ├── prepare_callbacks/
 │   └── training/
-├── static/           # Static files (CSS, JS)
-│   ├── templates/        # HTML templates
-│   └── app.py            # Main Flask application
-├── model/                # Model training and evaluation code
-├── data/                 # Data ingestion and processing scripts
-├── Dockerfile            # Docker configuration file
-├── requirements.txt      # Python dependencies
-├── dvc.yaml              # DVC pipeline stages
-└── README.md             # Project documentation
+├── config/
+│   └── config.yaml
+├── log/
+│   └── running_logs.log        
+├── research/
+│   ├── 01_data_ingestion.ipynb
+│   ├── 02_prepare_base_model.ipynb
+│   ├── 03_prepare_callbacks.ipynb
+│   ├── 04_training.ipynb
+│   └── 05_model_evaluation.ipynb
+├── src/                  
+│   └── bloodcellClassifier/
+│       ├── components/
+│       ├── config/
+│       ├── constants/
+│       ├── entity/
+│       ├── pipeline/
+│       └── utils
+├── templates/                        # HTML templates               
+│   └── index.html
+├── app.py                            # Main Flask application
+├── Dockefile                         # Docker configuration file    
+├── dvc.yaml                          # DVC pipeline stages
+├── main.py            
+├── params.yaml              
+├── README.md                         # Project documentation
+├── requirements.txt                  # Python dependencies
+├── scores.json      
+├── setup.py             
+└── template.py             
 ```
 
 ## Deployment
